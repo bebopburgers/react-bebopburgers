@@ -79,7 +79,6 @@ export const incrementProductCount = (product) => {
 }
 
 export const decrementProductCount = (product) => {
-    console.log(product,'product')
     return {
         type: DECREMENT_PRODUCT_COUNT,
         payload: product

@@ -22,7 +22,6 @@ export const CartViewItem = (props) => {
                             {it.products.modifiers.length > 0 &&
                             <ul>
                                 { it.modifiers.map(m => {
-                                    console.log(m)
                                     return <li key={`${m.id}${m.name}`}>{m.name}</li>
                                 }) }
                             </ul>

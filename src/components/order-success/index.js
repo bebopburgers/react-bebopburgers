@@ -16,7 +16,6 @@ class OrderSuccess extends Component {
     render() {
         const { isPaid } = this.props;
         const { createdOrder } = this.props.order;
-        console.log(createdOrder, 'order')
 
         if (!isPaid) {
             return '';
