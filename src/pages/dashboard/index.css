@@ -1,0 +1,27 @@
+.dashboard {
+    padding-top: 50px;
+    /*margin-top: 60px;*/
+}
+
+.tab-panels {
+    width: 100%;
+    margin-top: 60px;
+}
+
+.inner-tabpanel {
+    width: inherit;
+}
+
+.group-products {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 60px 40px 60px;
+    padding: 0 155px;
+}
+
+.disable-org {
+    display: none!important;
+}

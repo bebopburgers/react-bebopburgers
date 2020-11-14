@@ -1,0 +1,25 @@
+.group-box {
+
+}
+
+.group-box h1 {
+
+}
+
+.group-box-content {
+    padding: 20px;
+}
+
+.group-box-content h1 {
+    text-align: start;
+}
+
+.category-title {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: start;
+    margin: 0 60px;
+    padding: 0 185px;
+}

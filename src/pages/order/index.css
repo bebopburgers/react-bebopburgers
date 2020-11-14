@@ -1,0 +1,83 @@
+.order {
+    text-align: left;
+}
+
+.order-products {
+    width: 540px;
+    margin: 0 auto;
+}
+
+.order-products h2 {
+    text-align: left;
+}
+
+.order-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: solid 1px #ccc;
+}
+
+.order-price-title {
+    font-weight: 600;
+}
+
+.order-price-value {
+    color: #dd3333;
+}
+
+.payment-type {
+    width: 540px;
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.payment-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-item input {
+    margin-right: 15px;
+}
+
+.confirm-order {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.confirm-order button {
+    background-color: #dd3333;
+    height: 40px;
+    color: #fff;
+    border: none;
+    width: inherit;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.confirm-order button:hover {
+    background-color: #ba2323;
+}
+
+.confirm-order button:focus {
+    outline: none;
+}
+
+.confirm-order button:active {
+    outline: none;
+}
+
+.disabled {
+    background-color: #de6969!important;
+}

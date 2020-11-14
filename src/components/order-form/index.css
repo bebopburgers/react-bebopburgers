@@ -1,0 +1,167 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+.order {
+    margin-top: 100px;
+}
+
+.react-datepicker-wrapper {
+    display: block;
+    width: 100%;
+}
+
+.order form {
+    overflow: hidden;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.form-field {
+    display: block;
+}
+
+.combiner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.combiner label {
+
+}
+
+.combiner input {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.single input {
+    margin-top: 8px;
+}
+
+.single select {
+    margin-top: 8px;
+}
+
+.order-form-wrapper label {
+    text-align: left;
+    margin: 10px 0;
+    padding: 5px 0;
+    width: 48%;
+
+}
+
+.order label {
+    color: #8f8e8e;
+}
+
+.order label span{
+    color: #dd3333;
+}
+
+.order input {
+    border: 2px solid rgba(129,129,129,.2);
+    height: 42px;
+    padding: 0 15px;
+    box-shadow: none;
+    vertical-align: middle;
+    font-size: 14px;
+    transition: border-color .5s ease;
+    border-radius: 5px;
+    color: #8f8e8e;
+}
+
+.order select {
+    border: 2px solid rgba(129,129,129,.2);
+    height: 42px;
+    padding: 0 15px;
+    box-shadow: none;
+    vertical-align: middle;
+    font-size: 14px;
+    transition: border-color .5s ease;
+    border-radius: 5px;
+    color: #8f8e8e;
+}
+
+.order textarea {
+    border: 2px solid rgba(129,129,129,.2);
+    height: 42px;
+    padding: 15px 15px;
+    box-shadow: none;
+    vertical-align: middle;
+    font-size: 14px;
+    transition: border-color .5s ease;
+    border-radius: 5px;
+    color: #8f8e8e;
+    max-width: 540px;
+    min-width: 540px;
+    min-height: 160px;
+    margin-top: 10px!important;
+}
+
+.order input:focus {
+    outline: none!important;
+}
+
+.order textarea:focus {
+    outline: none!important;
+}
+
+.order select:focus {
+    outline: none!important;
+}
+
+.order input:active {
+    outline: none!important;
+    border: none;
+}
+
+.single label {
+    width: 100%;
+}
+
+.single input {
+    width: 100%;
+}
+
+.single select {
+    width: 100%;
+}
+
+.order-form-wrapper form {
+    width: 560px;
+}
+
+.single {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.field-error {
+    border: solid 2px #dd3333!important;
+}
+
+.notes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.notes h2 {
+    display: block;
+    width: 100%;
+    margin: 20px 0 0 0;
+    text-align: left;
+}
+
+.form-notes {
+    width: 100%;
+}

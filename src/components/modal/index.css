@@ -1,0 +1,112 @@
+.modal-content {
+    position: absolute;
+    background-color: #fff;
+    height: 450px;
+    width: 1000px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.modal-content-image {
+    width: 50%;
+    overflow: hidden;
+}
+
+.modal-content-image img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    object-fit: cover;
+}
+
+.modal-content-description {
+    width: 50%;
+    padding: 0 15px;
+    position: relative;
+}
+
+.modal-content-description-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px 20px 0 0;
+    cursor: pointer;
+    font-size: 36px;
+    height: 48px;
+    width: 48px;
+    background-color: transparent;
+    border: none;
+}
+
+.modal-content-description-close:active {
+    outline: none;
+}
+
+.modal-content-description-close img {
+    width: 35px;
+    height: 35px;
+}
+
+.modal-content-description-in-cart {
+    position: absolute;
+    width: 90%;
+    margin-bottom: 15px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin-left:auto;
+    margin-right:auto;
+    height: 40px;
+    color: #FFF;
+    border-radius: 5px;
+    background-color: #dd3333;
+    outline: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: transparent;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: none;
+    letter-spacing: .3px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color .25s ease,background-color .25s ease,border-color .25s ease,box-shadow .25s ease,opacity .25s ease;
+}
+
+.modal-content-description-in-cart:hover {
+    background-color: #c42424;
+}
+
+.custom-modal:focus {
+    outline: none
+}
+
+.modal-content-description-info {
+    padding: 35px 15px;
+    height: 450px;
+    overflow-y: scroll;
+}
+
+.modal-content-description-info::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-content-description-info-options {
+    margin-bottom: 150px;
+}
+
+.modal-content-description-info-options li {
+    list-style: none;
+    color: #777;
+}
