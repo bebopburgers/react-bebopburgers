@@ -64,6 +64,13 @@
     appearance: none;
 }
 
+@media screen and (max-width: 1024px) {
+    .product-card-btn button {
+        background-color: transparent;
+        color: #777;
+    }
+}
+
 .product-card-btn button:active {
     outline: none;
 }
@@ -73,7 +80,7 @@
 }
 
 .product-card-btn button:hover {
-    background-color: #dd0000;
+    background-color: #dd3333;
 }
 
 .product-card-title {
