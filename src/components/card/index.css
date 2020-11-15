@@ -48,7 +48,10 @@
     font-weight: 200;
     color: #FFF;
     background-color: #dd3333;
-    border-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
     border: none;
     cursor: pointer;
     transition: all .5s;
