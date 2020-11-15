@@ -1,6 +1,5 @@
 .order-success {
     width: 650px;
-
 }
 
 .success-container {
@@ -10,8 +9,9 @@
     margin-left:auto;
     margin-right:auto;
     position: absolute;
-    width: 800px;
-    height: 100vh;
+    width: 100%;
+    max-width: 800px;
+    max-height: 100vh;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,6 @@
 
 @media screen and (max-width: 1024px) {
     .order-success {
-        width: auto;
         overflow-y: scroll;
     }
 
@@ -59,15 +58,9 @@
     }
 
     .success-container {
-        justify-content: center;
-        align-items: center;
+        display: block;
         width: auto;
         padding: 15px;
-        overflow-y: scroll;
-    }
-
-    .order-products-info {
-        overflow-y: scroll;
     }
 
     .order-info {
@@ -91,7 +84,6 @@
         width: auto;
         margin: 10px 10px;
         font-size: 12px;
-        display: none;
     }
 
     .notes-item-description-text {
@@ -204,10 +196,6 @@
 
 .prices-item-description-sum {
     color: #dd3333;
-}
-
-.notes {
-
 }
 
 .notes-item-title {
