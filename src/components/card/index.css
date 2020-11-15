@@ -55,7 +55,9 @@
     border: none;
     cursor: pointer;
     transition: all .5s;
+    width: 45px;
     min-width: 45px;
+    height: 45px;
     min-height: 45px;
     -webkit-appearance: none;
     -moz-appearance: none;
