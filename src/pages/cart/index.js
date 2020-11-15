@@ -81,7 +81,7 @@ class CartPage extends Component {
                     />
                     { cart.length > 0 && [
                         <h1 key="promo-title">Промокод</h1>,
-                        <div>
+                        <div key="promo-block">
                             { !promo && <Promo onSetPromo={this.setPromo} onAddPromo={this.addPromo} key="promo"/> }
                             { promo && <p className="promo-title-message">Промокод добавлен</p> }
                             <div key="price" className="price">
