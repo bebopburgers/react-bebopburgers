@@ -17,14 +17,22 @@
     flex-wrap: wrap;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     .modal-content {
         flex-direction: column!important;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: flex-start;
-        height: auto;
+        height: 80%;
         width: auto;
         max-width: 320px;
+    }
+
+    .modal-content-image {
+        height: 40%;
+    }
+
+    .modal-content-description {
+        height: 60%;
     }
 }
 
@@ -33,21 +41,18 @@
     overflow: hidden;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     .modal-content-image {
         width: 320px;
-
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     .modal-content-description {
         width: 320px!important;
-        height: auto;
+        /*height: auto;*/
     }
 }
-
-
 
 .modal-content-image img {
     width: 100%;
