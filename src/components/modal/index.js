@@ -16,6 +16,8 @@ const ModalWrapper = (props) => {
             aria-labelledby="spring-modal-title"
             aria-describedby="spring-modal-description"
             className="custom-modal"
+            disableAutoFocus={true}
+            disableRestoreFocus={true}
             open={modalIsOpen}
             onClose={onClose}
             closeAfterTransition

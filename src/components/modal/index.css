@@ -36,6 +36,18 @@
     }
 }
 
+.modal-content:focus {
+    outline: none;
+}
+
+.modal-content {
+    outline: none;
+}
+
+.modal-content:active {
+    outline: none;
+}
+
 .modal-content-image {
     width: 50%;
     overflow: hidden;

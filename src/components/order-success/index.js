@@ -28,6 +28,8 @@ class OrderSuccess extends Component {
                 aria-describedby="spring-modal-description"
                 className="custom-modal"
                 open={isPaid}
+                disableAutoFocus={true}
+                disableRestoreFocus={true}
                 onClose={() => {}}
                 closeAfterTransition
                 BackdropComponent={Backdrop}

@@ -100,6 +100,18 @@
     }
 }
 
+.order-success:focus {
+    outline: none;
+}
+
+.order-success {
+    outline: none;
+}
+
+.order-success:active {
+    outline: none;
+}
+
 .order-info-item {
     width: 120px;
     text-align: center;
