@@ -57,6 +57,9 @@
     transition: all .5s;
     min-width: 45px;
     min-height: 45px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .product-card-btn button:active {
