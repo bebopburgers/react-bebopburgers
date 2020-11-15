@@ -47,6 +47,10 @@
     .cart-item-content {
         text-align: center!important;
     }
+
+    .cart-item-content ul {
+        text-align: center;
+    }
 }
 
 .cart-item-content span {

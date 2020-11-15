@@ -1,7 +1,17 @@
+body,html {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
 }
+
+
 
 .App-logo {
   height: 40vmin;

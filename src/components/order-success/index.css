@@ -66,6 +66,10 @@
         overflow-y: scroll;
     }
 
+    .order-products-info {
+        overflow-y: scroll;
+    }
+
     .order-info {
         margin-top: 40px;
         text-align: center;
