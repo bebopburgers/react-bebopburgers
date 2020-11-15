@@ -175,6 +175,16 @@
     width: 30px;
 }
 
+@media screen and (max-width: 1024px) {
+    .profile {
+        display: none;
+    }
+
+    .info-tel {
+        display: none;
+    }
+}
+
 .cart-base-info {
     width: 400px;
     margin: -1px -20px 30px;

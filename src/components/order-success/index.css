@@ -48,6 +48,54 @@
     align-items: center;
 }
 
+@media screen and (max-width: 1024px) {
+    .order-success {
+        width: auto;
+        overflow-y: scroll;
+    }
+
+    .status-container {
+        width: 100%;
+    }
+
+    .success-container {
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        padding: 15px;
+        overflow-y: scroll;
+    }
+
+    .order-info {
+        margin-top: 40px;
+        text-align: center;
+        width: auto;
+        padding: 10px;
+        display: flex;
+    }
+
+    .order-info-item {
+        width: auto!important;
+        padding: 0 10px;
+    }
+
+    .order-info-item-title {
+        margin-top: 0;
+    }
+
+    .container-title {
+        width: auto;
+        margin: 10px 10px;
+        font-size: 12px;
+        display: none;
+    }
+
+    .notes-item-description-text {
+        font-size: 12px;
+        text-align: center;
+    }
+}
+
 .order-info-item {
     width: 120px;
     text-align: center;

@@ -7,6 +7,13 @@
     margin: 0 auto;
 }
 
+@media screen and (max-width: 1024px) {
+    .order-products {
+        width: auto;
+        padding: 10px;
+    }
+}
+
 .order-products h2 {
     text-align: left;
 }
@@ -35,6 +42,12 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .payment-type {
+        width: auto;
+    }
 }
 
 .payment-item {

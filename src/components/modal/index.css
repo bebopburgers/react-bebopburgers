@@ -14,12 +14,40 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1000px) {
+    .modal-content {
+        flex-direction: column!important;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: auto;
+        width: auto;
+        max-width: 320px;
+    }
 }
 
 .modal-content-image {
     width: 50%;
     overflow: hidden;
 }
+
+@media screen and (max-width: 1000px) {
+    .modal-content-image {
+        width: 320px;
+
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .modal-content-description {
+        width: 320px!important;
+        height: auto;
+    }
+}
+
+
 
 .modal-content-image img {
     width: 100%;
@@ -45,6 +73,12 @@
     width: 48px;
     background-color: transparent;
     border: none;
+}
+
+@media screen and (max-width: 450px) {
+    .modal-content-description-close {
+        margin: 25px 20px 0 0;
+    }
 }
 
 .modal-content-description-close:active {

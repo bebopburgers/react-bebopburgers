@@ -2,7 +2,6 @@
     max-width: calc(25% - 20px);
     width: 300px;
     margin: 20px 10px 0 10px;
-    /*padding: 20px;*/
     background-color: #fff;
     height: 550px;
     display: flex;
@@ -14,6 +13,14 @@
     cursor: pointer;
     position: relative;
 }
+
+@media screen and (max-width: 1024px) {
+    .product-card {
+        max-width: 100%;
+        width: 285px;
+    }
+}
+
 
 .product-card:hover {
     transition: all .5s;
@@ -71,6 +78,12 @@
     color: #777;
     height: 90px;
     width: 255px;
+}
+
+@media screen and (max-width: 450px) {
+    .product-card-description {
+        height: 100px;
+    }
 }
 
 .product-card-title-name {

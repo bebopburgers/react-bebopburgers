@@ -10,6 +10,12 @@
     padding: 20px;
 }
 
+@media screen and (max-width: 1024px) {
+    .group-box-content {
+        padding: 7px;
+    }
+}
+
 .group-box-content h1 {
     text-align: start;
 }
@@ -22,4 +28,13 @@
     align-items: start;
     margin: 0 60px;
     padding: 0 185px;
+}
+
+@media screen and (max-width: 1024px) {
+    .category-title {
+        padding: 10px 0;
+        align-items: center;
+        text-align: center!important;
+        display: block;
+    }
 }

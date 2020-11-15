@@ -31,6 +31,20 @@ html {
     text-align: center;
 }
 
+@media screen and (max-width: 1024px) {
+    .combiner {
+        flex-direction: column;
+    }
+
+    .combiner label {
+        width: 100%!important;
+    }
+
+    .single .form-field {
+        /*width: 100%;*/
+    }
+}
+
 .combiner label {
 
 }
@@ -56,12 +70,30 @@ html {
 
 }
 
+@media screen and (max-width: 1024px) {
+    .order-form-wrapper form {
+        width: 320px!important;
+    }
+}
+
 .order label {
     color: #8f8e8e;
 }
 
 .order label span{
     color: #dd3333;
+}
+
+@media screen and (max-width: 1024px) {
+    .order textarea {
+        max-width: 300px!important;
+        min-width: 300px!important;
+    }
+
+    .form-notes {
+        max-width: 300px!important;
+        min-width: 300px!important;
+    }
 }
 
 .order input {
