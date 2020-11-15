@@ -8,9 +8,10 @@ import {Link} from "react-router-dom";
 
 
 class OrderSuccess extends Component {
-    componentDidMount() {
-        // const { getOrganizations } = this.props;
-        // getOrganizations();
+
+    componentWillUnmount() {
+        const { onReset } = this.props;
+        onReset();
     }
 
     render() {

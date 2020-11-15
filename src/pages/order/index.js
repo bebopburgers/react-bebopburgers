@@ -7,7 +7,7 @@ import LoaderWrapper from "../../components/spinner";
 import './index.css';
 import CartItem from "../../components/cart-item";
 import {Footer} from "../../components/footer";
-import {createOrder} from "../../actions/order";
+import {createOrder, resetOrder} from "../../actions/order";
 import OrderSuccess from "../../components/order-success";
 
 const orderMethods = [
@@ -155,7 +155,7 @@ class Order extends Component {
 
     render() {
         const { logo, phone } = this.props.dashboard.organizations.length && this.props.dashboard.organizations[0];
-        const { isLoading, cart, order } = this.props;
+        const { isLoading, cart, order, resetOrder } = this.props;
         const { totalPrice, orderMethod, name, orderType, date, paymentMethod } = this.state;
 
         if (isLoading) {
@@ -167,7 +167,7 @@ class Order extends Component {
         return (
             <div className="order">
                 <Header logo={logo} tel={phone} cart={undefined}/>
-                <OrderSuccess isPaid={order.isPaid} order={order} />
+                <OrderSuccess isPaid={order.isPaid} onReset={resetOrder} order={order} />
                 <OrderForm
                     orderMethod={orderMethod}
                     name={name}
@@ -242,7 +242,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     getOrganizations,
-    createOrder
+    createOrder,
+    resetOrder
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order);

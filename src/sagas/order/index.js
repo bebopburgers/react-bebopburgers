@@ -58,7 +58,6 @@ export const workerOrderData = function* (action) {
         if (result.status === 200) {
             yield put(resolveOrder(result.data));
             yield put(resetCart());
-            yield put(resetOrder())
         }
     } catch (err) {
         yield put(rejectOrder());

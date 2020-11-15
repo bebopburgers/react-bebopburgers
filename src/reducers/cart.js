@@ -35,7 +35,7 @@ export default function (state = initialState, action) {
         case ADD_PROMO_CODE:
             return {...state, promo: action.payload, promoIsAdded: true}
         case RESET_CART:
-            return {...state, products: []}
+            return {...state, products: [], promo: "", promoIsAdded: false}
         default:
             return state;
     }

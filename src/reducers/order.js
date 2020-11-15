@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
         case CREATE_ORDER_RESOLVE:
             return {...state, isLoading: false, isPaid: true, createdOrder: {...action.payload}};
         case CREATE_ORDER_REJECT:
-            return {...state, isLoading: false, isPaid: false};
+            return {...state, isLoading: false, isPaid: false, createdOrder: {}};
         case RESET_ORDER:
             return {...state, isLoading: false, isPaid: false, createdOrder: {}};
         default:
