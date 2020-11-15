@@ -1,6 +1,6 @@
 import {call, put, select} from 'redux-saga/effects';
 import orderToApi from "../../api/order";
-import {rejectOrder, resolveOrder} from "../../actions/order";
+import {rejectOrder, resetOrder, resolveOrder} from "../../actions/order";
 import {resetCart} from "../../actions/dashboard";
 
 export const getCart = (state) => state.cart
@@ -58,6 +58,7 @@ export const workerOrderData = function* (action) {
         if (result.status === 200) {
             yield put(resolveOrder(result.data));
             yield put(resetCart());
+            yield put(resetOrder())
         }
     } catch (err) {
         yield put(rejectOrder());

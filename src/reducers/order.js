@@ -1,4 +1,4 @@
-import {CREATE_ORDER_PENDING, CREATE_ORDER_REJECT, CREATE_ORDER_RESOLVE} from "../actions/order";
+import {CREATE_ORDER_PENDING, CREATE_ORDER_REJECT, CREATE_ORDER_RESOLVE, RESET_ORDER} from "../actions/order";
 
 const initialState = {
     isLoading: false,
@@ -14,6 +14,8 @@ export default function (state = initialState, action) {
             return {...state, isLoading: false, isPaid: true, createdOrder: {...action.payload}};
         case CREATE_ORDER_REJECT:
             return {...state, isLoading: false, isPaid: false};
+        case RESET_ORDER:
+            return {...state, isLoading: false, isPaid: false, createdOrder: {}};
         default:
             return state;
     }

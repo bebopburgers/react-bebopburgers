@@ -1,6 +1,7 @@
 export const CREATE_ORDER_PENDING = 'CREATE_ORDER_PENDING';
 export const CREATE_ORDER_RESOLVE = 'CREATE_ORDER_RESOLVE';
 export const CREATE_ORDER_REJECT = 'CREATE_ORDER_REJECT';
+export const RESET_ORDER = 'RESET_ORDER';
 
 export const createOrder = (data) => {
     return {
@@ -20,5 +21,12 @@ export const rejectOrder = (err) => {
     return {
         type: CREATE_ORDER_REJECT,
         payload: err
+    }
+}
+
+export const resetOrder = () => {
+    return {
+        type: CREATE_ORDER_REJECT,
+        payload: null
     }
 }
