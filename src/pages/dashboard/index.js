@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, lazy, Suspense} from 'react';
 import './index.css';
 import {connect} from 'react-redux';
 import {
@@ -10,13 +10,14 @@ import {
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import AppBar from "@material-ui/core/AppBar";
-import Category from "../../components/category";
-import { TabPanel } from "../../components/tab-panel";
-import ModalWrapper from "../../components/modal";
-import Header from "../../components/header";
 import LoaderWrapper from "../../components/spinner";
 import {deepEqual} from "../../helpers";
 import {Footer} from "../../components/footer";
+
+const Category = lazy(() => import('../../components/category'));
+const TabPanel = lazy(() => import('../../components/tab-panel'));
+const ModalWrapper = lazy(() => import('../../components/modal'));
+const Header = lazy(() => import('../../components/header'));
 
 class Dashboard extends Component {
     state = {
@@ -121,41 +122,44 @@ class Dashboard extends Component {
         }
 
         return (
-            <div className="dashboard">
-                <Header
-                    logo={logo}
-                    tel={phone}
-                    cart={cart}
-                    onRemove={this.removeFromCart}
-                />
-                <ModalWrapper
-                    modalIsOpen={modalIsOpen}
-                    currentProduct={currentProduct}
-                    totalPrice={currentProductTotalPrice}
-                    onClose={this.closeModal}
-                    onSetModifier={this.setModifier}
-                    onSetToCart={this.addToCart}
-                />
-                <AppBar className="disable-org">
-                    <Tabs
-                        variant="scrollable"
-                        scrollButtons="auto"
-                        value={tab}
-                        aria-label="simple tabs example"
-                        onChange={this.changeTab}
-                    >
-                        { groups.map((grp, idx) => <Tab key={`${grp.name}${grp.id}`} label={grp.name} value={idx + 1}/>) }
-                    </Tabs>
-                </AppBar>
-                <div className="tab-panels">
-                    {groups.map((grp, idx) =>
-                         <TabPanel key={`${grp.id}${grp.name}`} value={tab} index={idx + 1}>
-                             <Category title={grp.name} categories={grp.subgroups} onSelect={this.openModal}/>
-                         </TabPanel>
-                    )}
+            <Suspense fallback={<LoaderWrapper/>}>
+                <div className="dashboard">
+                    <Header
+                        logo={logo}
+                        tel={phone}
+                        cart={cart}
+                        onRemove={this.removeFromCart}
+                    />
+                    <ModalWrapper
+                        modalIsOpen={modalIsOpen}
+                        currentProduct={currentProduct}
+                        totalPrice={currentProductTotalPrice}
+                        onClose={this.closeModal}
+                        onSetModifier={this.setModifier}
+                        onSetToCart={this.addToCart}
+                    />
+                    <AppBar className="disable-org">
+                        <Tabs
+                            variant="scrollable"
+                            scrollButtons="auto"
+                            value={tab}
+                            aria-label="simple tabs example"
+                            onChange={this.changeTab}
+                        >
+                            { groups.map((grp, idx) => <Tab key={`${grp.name}${grp.id}`} label={grp.name} value={idx + 1}/>) }
+                        </Tabs>
+                    </AppBar>
+
+                        <div className="tab-panels">
+                            {groups.map((grp, idx) =>
+                                <TabPanel key={`${grp.id}${grp.name}`} value={tab} index={idx + 1}>
+                                    <Category title={grp.name} categories={grp.subgroups} onSelect={this.openModal}/>
+                                </TabPanel>
+                            )}
+                        </div>
+                    <Footer/>
                 </div>
-                <Footer/>
-            </div>
+            </Suspense>
         )
     }
 }
