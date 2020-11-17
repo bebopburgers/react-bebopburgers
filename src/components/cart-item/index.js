@@ -1,5 +1,7 @@
 import React from "react";
 import './index.css';
+import LazyImage from "../lazy-image";
+import {NO_AVAILABLE_IMAGE} from "../../constants";
 
 const CartItem = (props) => {
     const { cart, onRemove } = props;
@@ -9,7 +11,7 @@ const CartItem = (props) => {
                 cart.map(it =>
                     <li key={it.uuid} className="cart-list-item">
                         <div className="cart-list-item-image">
-                            <img src={it.products.image.imageUrl} alt=""/>
+                            <LazyImage unloadedSrc={NO_AVAILABLE_IMAGE} src={it.products.image.imageUrl}/>
                         </div>
                         <div className="cart-list-item-text">
                             <p>{it.products.name}</p>

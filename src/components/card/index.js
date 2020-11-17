@@ -1,11 +1,12 @@
 import React from "react";
 import './index.css';
-import {NO_AVAILABLE_IMAGE} from "../../constants";
+import {LOADING_IMAGE, NO_AVAILABLE_IMAGE} from "../../constants";
+import LazyImage from "../lazy-image";
 
 function Card(props) {
     return (
         <div key={`${props.id}${props.name}`} className="product-card">
-            <img className="product-card-img" src={props.image ? props.image.imageUrl : NO_AVAILABLE_IMAGE} alt="img"/>
+            <LazyImage className="product-card-img" unloadedSrc={LOADING_IMAGE} src={props.image ? props.image.imageUrl : NO_AVAILABLE_IMAGE}/>
             <div className="product-card-content">
                 <div className="product-card-title">
                     <p className="product-card-title-name">

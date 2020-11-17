@@ -163,7 +163,7 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
     return {
         dashboard: state.organizations,
-        isLoading: state.organizations.isLoading || state.nomenclature.isLoading,
+        isLoading: state.organizations.isLoading || state.nomenclature.isLoading || state.order.isLoading,
         nomenclature: state.nomenclature.nomenclature,
         cart: state.cart.products
     }
