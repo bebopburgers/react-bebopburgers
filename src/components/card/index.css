@@ -117,7 +117,6 @@ min-width: 300px;
 
 .product-card-img {
     height: 50%;
-    width: 285px;
     object-fit: cover;
     border-radius: 5px 5px  0 0;
 }
