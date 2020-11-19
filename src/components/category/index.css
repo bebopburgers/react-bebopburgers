@@ -26,8 +26,8 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: start;
-    margin: 0 60px;
-    padding: 0 185px;
+        margin: 0 60px;
+    padding: 0 10px;
 }
 
 @media screen and (max-width: 1024px) {

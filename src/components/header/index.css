@@ -19,14 +19,14 @@
 .container {
     padding-right: 15px;
     padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 60px;
+    margin-left: 60px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    max-width: 1235px;
+  /*   max-width: 1235px; */
     position: relative;
 }
 
