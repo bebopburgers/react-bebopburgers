@@ -21,7 +21,7 @@ const Header = lazy(() => import('../../components/header'));
 
 class Dashboard extends Component {
     state = {
-        tab: 4,
+        tab: 1,
         modalIsOpen: false,
         currentProduct: undefined,
         currentProductModifiers: [],
@@ -138,17 +138,7 @@ class Dashboard extends Component {
                         onSetModifier={this.setModifier}
                         onSetToCart={this.addToCart}
                     />
-                    <AppBar className="disable-org">
-                        <Tabs
-                            variant="scrollable"
-                            scrollButtons="auto"
-                            value={tab}
-                            aria-label="simple tabs example"
-                            onChange={this.changeTab}
-                        >
-                            { groups.map((grp, idx) => <Tab key={`${grp.name}${grp.id}`} label={grp.name} value={idx + 1}/>) }
-                        </Tabs>
-                    </AppBar>
+                    
 
                         <div className="tab-panels">
                             {groups.map((grp, idx) =>

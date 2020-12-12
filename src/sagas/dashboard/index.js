@@ -8,6 +8,7 @@ import {
     rejectOrganizations, removeFromCart
 } from "../../actions/dashboard";
 import { v4 as uuidv4 } from 'uuid';
+import { BEBOPBURGERS_ID } from '../../constants';
 
 export const workerDashboardData = function* () {
     try {
@@ -67,7 +68,7 @@ export const workerDashboardData = function* () {
         }).filter(gr => gr)];
 
         const payload = {
-            groups: [...grouped],
+            groups: [...grouped.filter(x => x.id === BEBOPBURGERS_ID)],
             revision: nomenclature.data.revision,
             uploadDate: nomenclature.data.uploadDate,
             productsList: nomenclature.data.products
