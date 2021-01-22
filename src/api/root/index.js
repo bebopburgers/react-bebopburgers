@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_ROOT, API_CLIENT_ID, API_CLIENT_SECRET} from  '../../constants/index';
+import {API_ROOT, API_CLIENT_ID, API_CLIENT_SECRET} from '../../constants/index';
 import {tokenManager} from '../../helpers/index';
 
 const getAccessToken = async function() {

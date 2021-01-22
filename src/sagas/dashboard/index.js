@@ -3,9 +3,11 @@ import getOrganizationsFromApi from '../../api/organization/index';
 import getNomenclatureFromApi from '../../api/nomenclature/index';
 import {
     putNomenclature,
-    putOrganizations, putToCart,
+    putOrganizations,
+    putToCart,
     rejectNomenclature,
-    rejectOrganizations, removeFromCart
+    rejectOrganizations,
+    removeFromCart
 } from "../../actions/dashboard";
 import { v4 as uuidv4 } from 'uuid';
 import { BEBOPBURGERS_ID } from '../../constants';
