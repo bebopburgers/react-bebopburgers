@@ -5,7 +5,7 @@ import LazyImage from "../lazy-image";
 
 function Card(props) {
     return (
-        <div key={`${props.id}${props.name}`} className="product-card">
+        <div key={`${props.id}${props.name}`} onClick={(e) => props.onOpenModal(e, props)} className="product-card">
             <LazyImage className="product-card-img" unloadedSrc={LOADING_IMAGE} src={props.image ? props.image.imageUrl : NO_AVAILABLE_IMAGE}/>
             <div className="product-card-content">
                 <div className="product-card-title">

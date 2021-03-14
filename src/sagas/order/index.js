@@ -30,9 +30,8 @@ export const workerOrderData = function* (action) {
                     housing: action.payload.block,
                     apartment: action.payload.flat,
                     entrance: action.payload.entrance,
-
                 },
-                date: action.payload.date.toJSON(),
+                date: `${action.payload.day} ${action.payload.time}`,
                 personsCount: "1",
                 items: [
                     ...cart.products.map(pr => ({
@@ -48,7 +47,12 @@ export const workerOrderData = function* (action) {
                                 groupName: ""
                             }))
                         ]
-                    }))
+                    })),
+                    {
+                        id: "",
+                        name: "delivery",
+                        sum: action.payload.delivery
+                    }
                 ]
             }
         }
@@ -58,6 +62,8 @@ export const workerOrderData = function* (action) {
         if (result.status === 200) {
             yield put(resolveOrder(result.data));
             yield put(resetCart());
+        } else {
+            window.alert("ORDER NOT CREATED - http error")
         }
     } catch (err) {
         yield put(rejectOrder());

@@ -7,8 +7,7 @@ import {getAccessToken} from "../actions/root";
 import CartPage from "../pages/cart";
 import Order from "../pages/order";
 import OrderSuccess from "../components/order-success";
-
-
+import Address from  "../pages/address";
 
 class App extends Component {
     componentDidMount() {
@@ -25,6 +24,9 @@ class App extends Component {
                     </Route>
                     <Route path="/cart">
                         <CartPage />
+                    </Route>
+                    <Route path="/address">
+                        <Address />
                     </Route>
                     <Route path="/order">
                         <Order />

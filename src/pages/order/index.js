@@ -2,41 +2,22 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Header from "../../components/header";
 import OrderForm from "../../components/order-form";
-import { getOrganizations } from "../../actions/dashboard";
+import {addToCartForSnapshot, getOrganizations} from "../../actions/dashboard";
 import LoaderWrapper from "../../components/spinner";
 import './index.css';
 import CartItem from "../../components/cart-item";
 import {Footer} from "../../components/footer";
 import {createOrder, resetOrder} from "../../actions/order";
 import OrderSuccess from "../../components/order-success";
-
-const orderMethods = [
-    "Доставка",
-    "Самовывоз"
-]
-
-const orderTypes = [
-    "Как можно быстрее",
-    "Выбрать время доставки"
-]
+import {addToDeliveryForSnapshot} from "../../actions/address";
 
 const VALIDATION_FLAG = "name";
 
 class Order extends Component {
 
-    componentDidMount() {
-        const { getOrganizations, cart } = this.props;
-        this.setState({ totalPrice: this.calculateTotalCartValues(cart) })
-        getOrganizations();
-    }
-
     state = {
         totalPrice: 0,
         paymentMethod: 'cash',
-        orderMethod: { key: 0, value: "Доставка" },
-        orderType: { key: 0, value: "Как можно быстрее" },
-        isSelfService: false,
-        date: new Date(),
         name: {
             value: "",
             isValid: undefined,
@@ -45,37 +26,44 @@ class Order extends Component {
             value: "",
             isValid: undefined,
         },
-        street: "",
-        house: "",
-        block: "",
-        flat: "",
-        entrance: "",
         notes: ""
     }
 
-    changeOrderMethod = (e) => {
-        const { value } = e.target;
-        const { isSelfService } = this.state;
+    componentDidMount() {
+        const { getOrganizations, cart } = this.props;
+        this.setState({ totalPrice: this.calculateTotalCartValues(cart) })
+        getOrganizations();
 
-        if (+value === 1) {
-            this.setState({
-                orderType: { key: 0, value: "Как можно быстрее" },
-                isSelfService: true,
-                street: "",
-                house: "",
-                block: "",
-                flat: "",
-                entrance: "",
-                date: new Date(),
-            });
-        }
-
-        this.setState({ orderMethod: { key: +value, value: orderMethods[value] }, isSelfService: !isSelfService});
+        this.setDataFromSnapshot();
     }
 
-    changeOrderType = (e) => {
-        const { value } = e.target;
-        this.setState({ orderType: { key: +value, value: orderTypes[value] }});
+    componentWillUnmount() {
+        window.localStorage.removeItem("cart-snapshot");
+        window.localStorage.removeItem("delivery");
+    }
+
+    setDataFromSnapshot = () => {
+        const { addToCartForSnapshot, addToDeliveryForSnapshot } = this.props;
+
+        const cartSnapshot = JSON.parse(window.localStorage.getItem("cart-snapshot"));
+        const deliverySnapshot = JSON.parse(window.localStorage.getItem("delivery"));
+
+        if (deliverySnapshot == null) {
+            return;
+        }
+
+        if (cartSnapshot == null) {
+            return;
+        }
+
+        if (cartSnapshot.length < 1) {
+            return;
+        }
+
+        for (let i = 0; i < cartSnapshot.length; i++) {
+            addToCartForSnapshot(cartSnapshot[i]);
+        }
+        addToDeliveryForSnapshot(deliverySnapshot);
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
@@ -83,10 +71,6 @@ class Order extends Component {
             this.setState({
                 totalPrice: 0,
                 paymentMethod: 'cash',
-                orderMethod: { key: 0, value: "Доставка" },
-                orderType: { key: 0, value: "Как можно быстрее" },
-                isSelfService: false,
-                date: new Date(),
                 name: {
                     value: "",
                     isValid: undefined,
@@ -95,14 +79,14 @@ class Order extends Component {
                     value: "",
                     isValid: undefined,
                 },
-                street: "",
-                house: "",
-                block: "",
-                flat: "",
-                entrance: "",
                 notes: ""
             })
         }
+
+        this.setState({ totalPrice: this.calculateTotalCartValues(nextProps.cart) })
+
+        window.localStorage.setItem("cart-snapshot", JSON.stringify(nextProps.cart));
+        window.localStorage.setItem("delivery", JSON.stringify(nextProps.delivery.delivery));
     }
 
     validate = (name, value) => {
@@ -128,10 +112,6 @@ class Order extends Component {
         this.setState({ [name]: value })
     }
 
-    setDate = (date) => {
-        this.setState({ date: date })
-    }
-
     calculateTotalCartValues = (cart) => {
         let totalPrice = 0;
 
@@ -150,13 +130,13 @@ class Order extends Component {
 
     createOrder = () => {
         const { createOrder } = this.props;
-        createOrder(this.state);
+        createOrder({...this.state, delivery: this.props.delivery.delivery && this.props.delivery.delivery.delivery_price || 0});
     }
 
     render() {
         const { logo, phone } = this.props.dashboard.organizations.length && this.props.dashboard.organizations[0];
-        const { isLoading, cart, order, resetOrder } = this.props;
-        const { totalPrice, orderMethod, name, orderType, date, paymentMethod } = this.state;
+        const { isLoading, cart, order, resetOrder, delivery } = this.props;
+        const { totalPrice, name, paymentMethod } = this.state;
 
         if (isLoading) {
             return <LoaderWrapper/>
@@ -169,15 +149,9 @@ class Order extends Component {
                 <Header logo={logo} tel={phone} cart={undefined}/>
                 <OrderSuccess isPaid={order.isPaid} onReset={resetOrder} order={order} />
                 <OrderForm
-                    orderMethod={orderMethod}
                     name={name}
                     phone={this.state.phone}
-                    orderType={orderType}
-                    date={date}
-                    setDate={this.setDate}
                     handleChange={this.handleChange}
-                    changeOrderType={this.changeOrderType}
-                    changeOrderMethod={this.changeOrderMethod}
                     handleChangeWithValidation={this.handleChangeWithValidation}
                 />
                 <div className="order-products">
@@ -191,6 +165,14 @@ class Order extends Component {
                             {totalPrice} ₽
                         </span>
                     </div>
+                    {delivery.delivery && <div className="order-price">
+                        <span className="order-price-title">
+                            <p>Доставка:</p>
+                        </span>
+                        <span className="order-price-value">
+                            {delivery.delivery && delivery.delivery.delivery_price} ₽
+                        </span>
+                    </div>}
                     <div className="payment-type">
                         <div className="payment-item">
                             <input
@@ -236,14 +218,17 @@ const mapStateToProps = state => {
         dashboard: state.organizations,
         isLoading: state.organizations.isLoading || state.nomenclature.isLoading || state.order.isLoading,
         cart: state.cart.products,
-        order: state.order
+        order: state.order,
+        delivery: state.delivery
     }
 }
 
 const mapDispatchToProps = {
     getOrganizations,
     createOrder,
-    resetOrder
+    resetOrder,
+    addToCartForSnapshot,
+    addToDeliveryForSnapshot
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order);

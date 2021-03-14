@@ -7,9 +7,10 @@ export const GET_NOMENCLATURE_RESOLVE = 'GET_NOMENCLATURE_RESOLVE';
 export const GET_NOMENCLATURE_REJECT = 'GET_NOMENCLATURE_REJECT';
 
 export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
+export const ADD_PRODUCT_TO_CART_WITH_SNAPSHOT = 'ADD_PRODUCT_TO_CART_WITH_SNAPSHOT';
 export const PUT_PRODUCT_TO_CART = 'PUT_PRODUCT_TO_CART';
 export const PREPARE_FOR_REMOVE_FROM_CART = 'PREPARE_FOR_REMOVE_FROM_CART';
-export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART';
+export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUdadata-containerCT_FROM_CART';
 export const INCREMENT_PRODUCT_COUNT = 'INCREMENT_PRODUCT_COUNT';
 export const DECREMENT_PRODUCT_COUNT = 'DECREMENT_PRODUCT_COUNT';
 export const RESET_CART = 'RESET_CART';
@@ -60,6 +61,13 @@ export const rejectNomenclature = () => {
 export const addToCart = (product) => {
     return {
         type: ADD_PRODUCT_TO_CART,
+        payload: product
+    }
+}
+
+export const addToCartForSnapshot = (product) => {
+    return {
+        type: ADD_PRODUCT_TO_CART_WITH_SNAPSHOT,
         payload: product
     }
 }

@@ -6,7 +6,7 @@ import {
 } from "../actions/dashboard";
 import {GET_ACCESS_TOKEN} from  '../actions/root/index';
 import {CREATE_ORDER_PENDING} from "../actions/order";
-
+import {GET_DELIVERY_PRICE_PENDING} from "../actions/address";
 import {
     workerDashboardData,
     workerCartSetData,
@@ -14,6 +14,7 @@ import {
 } from './dashboard';
 import workerAccessToken from "./root";
 import {workerOrderData} from "./order";
+import {workerDeliveryData} from "./delivery";
 
 function* watchAll() {
     yield all([
@@ -22,6 +23,7 @@ function* watchAll() {
         takeEvery(ADD_PRODUCT_TO_CART, workerCartSetData),
         takeEvery(PREPARE_FOR_REMOVE_FROM_CART, workerCartRemoveData),
         takeEvery(CREATE_ORDER_PENDING, workerOrderData),
+        takeEvery(GET_DELIVERY_PRICE_PENDING, workerDeliveryData),
         // takeEvery("CREATE_USER_REQUESTED", createUser)
     ]);
 }

@@ -1,5 +1,5 @@
 import {
-    ADD_PRODUCT_TO_CART,
+    ADD_PRODUCT_TO_CART, ADD_PRODUCT_TO_CART_WITH_SNAPSHOT,
     ADD_PROMO_CODE,
     DECREMENT_PRODUCT_COUNT,
     INCREMENT_PRODUCT_COUNT,
@@ -19,6 +19,8 @@ export default function (state = initialState, action) {
         case ADD_PRODUCT_TO_CART:
             return state;
         case PUT_PRODUCT_TO_CART:
+            return {...state, products: [...state.products, action.payload]};
+        case ADD_PRODUCT_TO_CART_WITH_SNAPSHOT:
             return {...state, products: [...state.products, action.payload]};
         case INCREMENT_PRODUCT_COUNT:
             return {...state, products: state.products.map(pr => pr.uuid === action.payload.uuid ?

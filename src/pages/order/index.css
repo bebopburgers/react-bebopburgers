@@ -94,3 +94,20 @@
 .disabled {
     background-color: #de6969!important;
 }
+
+.date-pick {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.time-p {
+    width: 100%;
+}
+
+.rc-time-picker-input-button {
+    top: 15px;
+}
+
+.rc-time-picker-clear {
+    top: 15px;
+}

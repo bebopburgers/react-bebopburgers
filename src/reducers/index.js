@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux';
-import organizationsReducer from '../reducers/organizations';
-import nomenclatureReducer from "../reducers/nomenclature";
-import cartReducer from "../reducers/cart";
-import orderReducer from "../reducers/order";
+import organizationsReducer from './organizations';
+import nomenclatureReducer from "./nomenclature";
+import cartReducer from "./cart";
+import orderReducer from "./order";
+import deliveryReducer from  "./delivery";
 
 const rootReducer = combineReducers({
     organizations: organizationsReducer,
     nomenclature: nomenclatureReducer,
     cart: cartReducer,
-    order: orderReducer
+    order: orderReducer,
+    delivery: deliveryReducer
 });
 
 export default rootReducer;

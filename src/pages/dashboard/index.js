@@ -5,11 +5,10 @@ import {
     getOrganizations,
     getNomenclature,
     addToCart,
-    prepareToRemoveFromCart, incrementProductCount
+    removeFromCart,
+    incrementProductCount,
+    addToCartForSnapshot
 } from '../../actions/dashboard';
-import Tab from "@material-ui/core/Tab";
-import Tabs from "@material-ui/core/Tabs";
-import AppBar from "@material-ui/core/AppBar";
 import LoaderWrapper from "../../components/spinner";
 import {deepEqual} from "../../helpers";
 import {Footer} from "../../components/footer";
@@ -30,6 +29,35 @@ class Dashboard extends Component {
 
     componentDidMount() {
         this.getDashboardData();
+
+        this.setDataFromSnapshot();
+    }
+
+    setDataFromSnapshot = () => {
+        const { addToCartForSnapshot, incrementProductCount } = this.props;
+
+        const cartSnapshot = JSON.parse(window.localStorage.getItem("cart-snapshot"));
+
+        if (cartSnapshot == null) {
+            return;
+        }
+
+        if (cartSnapshot.length < 1) {
+            return;
+        }
+
+        for (let i = 0; i < cartSnapshot.length; i++) {
+
+            const newItem = {
+                price: cartSnapshot[i].price,
+                products: cartSnapshot[i].products,
+                modifiers: cartSnapshot[i].modifiers,
+                count: cartSnapshot[i].count,
+                uuid: cartSnapshot[i].uuid
+            };
+
+            addToCartForSnapshot(newItem);
+        }
     }
 
     getDashboardData = () => {
@@ -41,7 +69,12 @@ class Dashboard extends Component {
         this.setState({ tab: value })
     }
 
-    openModal = (product) => {
+    openModal = (e, product) => {
+
+        if (e.target.type === "submit") {
+            return;
+        }
+
         this.setState({
             currentProduct: product,
             modalIsOpen: true,
@@ -86,8 +119,39 @@ class Dashboard extends Component {
 
         let isExist = null;
 
+
         cart.map(i => {
-            if (deepEqual(i.products, newItem.products) && deepEqual(i.modifiers, newItem.modifiers)) {
+            if (JSON.stringify(i.products) == JSON.stringify(newItem.products) && JSON.stringify(i.modifiers) == JSON.stringify(newItem.modifiers)) {
+                isExist = i;
+            }
+        });
+
+        if (isExist == null) {
+            addToCart(newItem);
+
+        } else {
+            incrementProductCount(isExist);
+        }
+
+        this.closeModal();
+    }
+
+    addToCartWithoutModal = (product) => {
+        const { addToCart, cart, incrementProductCount } = this.props;
+        const { currentProductModifiers, currentProduct, currentProductTotalPrice } = this.state;
+
+        const newItem = {
+            price: product.price,
+            products: product,
+            modifiers: [],
+            count: product.count,
+            uuid: product.uuid
+        };
+
+        let isExist = null;
+
+        cart.map(i => {
+            if (JSON.stringify(i.products) == JSON.stringify(newItem.products) && JSON.stringify(i.modifiers) == JSON.stringify(newItem.modifiers)) {
                 isExist = i;
             }
         });
@@ -97,13 +161,20 @@ class Dashboard extends Component {
         } else {
             incrementProductCount(isExist);
         }
+    }
 
-        this.closeModal();
+    componentWillReceiveProps(nextProps, nextContext) {
+        window.localStorage.setItem("cart-snapshot", JSON.stringify(nextProps.cart))
+    }
+
+    componentWillUnmount() {
+        window.localStorage.removeItem("cart-snapshot")
     }
 
     removeFromCart = (product) => {
-        const { prepareToRemoveFromCart } = this.props;
-        prepareToRemoveFromCart(product);
+        const { removeFromCart } = this.props;
+
+        removeFromCart(product);
     }
 
     render() {
@@ -143,7 +214,11 @@ class Dashboard extends Component {
                         <div className="tab-panels">
                             {groups.map((grp, idx) =>
                                 <TabPanel key={`${grp.id}${grp.name}`} value={tab} index={idx + 1}>
-                                    <Category title={grp.name} categories={grp.subgroups} onSelect={this.openModal}/>
+                                    <Category
+                                        title={grp.name}
+                                        categories={grp.subgroups}
+                                        onOpenModal={this.openModal}
+                                        onSelect={this.addToCartWithoutModal}/>
                                 </TabPanel>
                             )}
                         </div>
@@ -159,10 +234,17 @@ const mapStateToProps = state => {
         dashboard: state.organizations,
         isLoading: state.organizations.isLoading || state.nomenclature.isLoading || state.order.isLoading,
         nomenclature: state.nomenclature.nomenclature,
-        cart: state.cart.products
+        cart: state.cart.products,
     }
 }
 
-const mapDispatchToProps = { getOrganizations, getNomenclature, addToCart, prepareToRemoveFromCart, incrementProductCount }
+const mapDispatchToProps = {
+    getOrganizations,
+    getNomenclature,
+    addToCart,
+    removeFromCart,
+    incrementProductCount,
+    addToCartForSnapshot
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

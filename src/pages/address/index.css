@@ -1,0 +1,166 @@
+.wrapper-dadata {
+    margin-top: 100px;
+    width: 100%;
+}
+
+.address-container {
+    width: 700px;
+    margin: 50px auto;
+    text-align: start;
+}
+
+.address-container label {
+    color: #8f8e8e;
+}
+
+.react-dadata {
+    margin-top: 10px;
+}
+
+.react-dadata__input:focus {
+    outline: none;
+}
+
+.important-field {
+    color: #dd3333;
+}
+
+.calculate-delivery {
+    background-color: #dd3333;
+    height: 40px;
+    color: #fff;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all .5s;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 7px;
+}
+
+.calculate-delivery:hover {
+    background-color: #ba2323;
+}
+
+.disabled {
+    background-color: #de6969!important;
+    cursor: not-allowed;
+}
+
+.combiner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .combiner {
+        flex-direction: column;
+    }
+
+    .combiner label {
+        width: 100%!important;
+    }
+}
+
+.combiner label {
+
+}
+
+.combiner input {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.single input {
+    margin-top: 8px;
+}
+
+.single select {
+    margin-top: 8px;
+}
+
+input {
+    border: 2px solid rgba(129,129,129,.2);
+    height: 42px;
+    padding: 0 15px;
+    box-shadow: none;
+    vertical-align: middle;
+    font-size: 14px;
+    transition: border-color .5s ease;
+    border-radius: 5px;
+    color: #8f8e8e;
+}
+
+select {
+    border: 2px solid rgba(129,129,129,.2);
+    height: 42px;
+    padding: 0 15px;
+    box-shadow: none;
+    vertical-align: middle;
+    font-size: 14px;
+    transition: border-color .5s ease;
+    border-radius: 5px;
+    color: #8f8e8e;
+}
+
+.single label {
+    width: 100%;
+}
+
+.single input {
+    width: 100%;
+}
+
+.single select {
+    width: 100%;
+}
+
+.single {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.field-error {
+    border: solid 2px #dd3333!important;
+}
+
+.date-left {
+    width: 49%;
+}
+
+.date-right {
+    width: 49%;
+}
+
+.date {
+    text-align: start;
+}
+
+.time-p .rc-time-picker-input{
+    border: 2px solid rgba(129,129,129,.2);
+    height: 42px;
+    padding: 0 15px;
+    box-shadow: none;
+    vertical-align: middle;
+    font-size: 14px;
+    transition: border-color .5s ease;
+    border-radius: 5px;
+    color: #8f8e8e;
+}
+
+.date-combiner {
+    margin-top: 15px;
+}
+
+.delivery-price {
+    font-size: 20px;
+}
