@@ -13,7 +13,8 @@ import {
     addToDeliveryForSnapshot,
     getDeliveryPrice,
     resetDelivery,
-    resetDeliveryForSnapshot
+    resetDeliveryForSnapshot,
+    setDeliveryAddress
 } from "../../actions/address";
 import {DADATA_LOCATIONS} from "../../constants";
 
@@ -117,10 +118,8 @@ class Address extends Component {
     }
 
     handleInputChange = (e) => {
-        // this.setState(() => ({ valid: e.target.value.length > 3 } ))
         if (e.keyCode === 8) {
             this.props.resetDelivery();
-            // console.log(e.keyCode, 'enter press here! ')
         }
     }
 
@@ -133,9 +132,18 @@ class Address extends Component {
             totalPrice += item.price;
         });
 
-        this.setState(state => ({ ...state, valid: dadata.value.length > 3, dadata: {...dadata } }))
+        this.setState(state => ({
+            ...state,
+            valid: dadata.value.length > 3,
+            dadata: {...dadata },
+        }));
 
         this.props.getDeliveryPrice(dadata, totalPrice);
+        this.props.setDeliveryAddress({
+            city: dadata.data.city,
+            street: dadata.data.street,
+            home: dadata.data.house
+        });
     }
 
     render() {
@@ -266,6 +274,7 @@ const mapDispatchToProps = {
     getOrganizations,
     createOrder,
     resetOrder,
+    setDeliveryAddress,
     addToCartForSnapshot,
     getDeliveryPrice,
     addToDeliveryForSnapshot,

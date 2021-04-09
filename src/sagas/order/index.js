@@ -6,6 +6,29 @@ import {resetCart} from "../../actions/dashboard";
 export const getCart = (state) => state.cart
 export const getOrganization = (state) => state.organizations.organizations[0];
 
+const paymentMethods = [ // bank , cash
+    {
+        id: "09322f46-578a-d210-add7-eec222a08871",
+        code: "CASH",
+        name: "Наличные",
+        comment: "",
+        combinable: true,
+        externalRevision: 1289503,
+        applicableMarketingCampaigns: null,
+        deleted: false
+    },
+    {
+        id: "9cd5d67a-89b4-ab69-1365-7b8c51865a90",
+        code: "CARD",
+        name: "Банковская карта",
+        comment: "",
+        combinable: true,
+        externalRevision: 1289503,
+        applicableMarketingCampaigns: null,
+        deleted: false
+    }
+];
+
 export const workerOrderData = function* (action) {
     try {
         let cart = yield select(getCart);
@@ -25,13 +48,11 @@ export const workerOrderData = function* (action) {
                 isSelfService: action.payload.isSelfService,
                 comment: `Notes: ${action.payload.notes}. Payment method: ${action.payload.paymentMethod}`,
                 address: {
-                    street: action.payload.street,
-                    home: action.payload.house,
-                    housing: action.payload.block,
-                    apartment: action.payload.flat,
-                    entrance: action.payload.entrance,
+                    city: action.payload.address.city,
+                    street: action.payload.address.street,
+                    home: action.payload.address.home,
                 },
-                date: `${action.payload.day} ${action.payload.time}`,
+                date: new Date(),
                 personsCount: "1",
                 items: [
                     ...cart.products.map(pr => ({
@@ -47,11 +68,13 @@ export const workerOrderData = function* (action) {
                                 groupName: ""
                             }))
                         ]
-                    })),
+                    }))
+                ],
+                paymentItems: [
                     {
-                        id: "",
-                        name: "delivery",
-                        sum: action.payload.delivery
+                        sum: action.payload.delivery,
+                        isProcessedExternally: true,
+                        paymentType: action.payload.paymentMethod === "cash" ? paymentMethods[0] : paymentMethods[1]
                     }
                 ]
             }

@@ -2,12 +2,13 @@ import {
     ADD_DELIVERY_WITH_SNAPSHOT,
     GET_DELIVERY_PRICE_PENDING,
     GET_DELIVERY_PRICE_REJECT,
-    GET_DELIVERY_PRICE_RESOLVE, RESET_DELIVERY, RESET_DELIVERY_WITH_SNAPSHOT
+    GET_DELIVERY_PRICE_RESOLVE, RESET_DELIVERY, RESET_DELIVERY_WITH_SNAPSHOT, SET_DELIVERY_ADDRESS
 } from "../actions/address";
 
 const initialState = {
     isLoading: false,
-    delivery: undefined
+    delivery: undefined,
+    address: {}
 }
 
 export default function (state = initialState, action) {
@@ -16,6 +17,8 @@ export default function (state = initialState, action) {
             return {...state, isLoading: true};
         case GET_DELIVERY_PRICE_RESOLVE:
             return {...state, isLoading: false, delivery: action.payload};
+        case SET_DELIVERY_ADDRESS:
+            return  { ...state, isLoading: false, address: action.payload}
         case ADD_DELIVERY_WITH_SNAPSHOT:
             return {...state, isLoading: false, delivery: action.payload};
         case RESET_DELIVERY:

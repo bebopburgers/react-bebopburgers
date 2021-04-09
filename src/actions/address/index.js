@@ -5,11 +5,19 @@ export const RESET_DELIVERY = 'RESET_DELIVERY';
 export const GET_DELIVERY_PRICE_PENDING = 'GET_DELIVERY_PRICE_PENDING';
 export const GET_DELIVERY_PRICE_RESOLVE = 'GET_DELIVERY_PRICE_RESOLVE';
 export const GET_DELIVERY_PRICE_REJECT = 'GET_DELIVERY_PRICE_REJECT';
+export const SET_DELIVERY_ADDRESS = 'SET_DELIVERY_ADDRESS';
 
 export const getDeliveryPrice = (data, cartSum) => {
     return {
         type: GET_DELIVERY_PRICE_PENDING,
         payload: {...data, price: cartSum }
+    }
+}
+
+export const setDeliveryAddress = (address) => {
+    return {
+        type: SET_DELIVERY_ADDRESS,
+        payload: {...address}
     }
 }
 

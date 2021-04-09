@@ -129,8 +129,8 @@ class Order extends Component {
     }
 
     createOrder = () => {
-        const { createOrder } = this.props;
-        createOrder({...this.state, delivery: this.props.delivery.delivery && this.props.delivery.delivery.delivery_price || 0});
+        const { createOrder, delivery } = this.props;
+        createOrder({...this.state, address: delivery.address, delivery: delivery.delivery && delivery.delivery.delivery_price || 0});
     }
 
     render() {
