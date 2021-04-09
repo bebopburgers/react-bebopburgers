@@ -26,6 +26,8 @@ class Order extends Component {
             value: "",
             isValid: undefined,
         },
+        entrance: "",
+        flat: "",
         notes: ""
     }
 
@@ -107,6 +109,12 @@ class Order extends Component {
         this.setState({ [name]: { value: value, isValid: this.validate(name, value) } })
     }
 
+    handleChangeWithoutValidation = (e) => {
+        const { name, value } = e.target;
+
+        this.setState({ [name]: value })
+    }
+
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({ [name]: value })
@@ -130,7 +138,15 @@ class Order extends Component {
 
     createOrder = () => {
         const { createOrder, delivery } = this.props;
-        createOrder({...this.state, address: delivery.address, delivery: delivery.delivery && delivery.delivery.delivery_price || 0});
+        createOrder({
+            ...this.state,
+            address: {
+                ...delivery.address,
+                entrance: this.state.entrance,
+                flat: this.state.flat
+            },
+            delivery: delivery.delivery && delivery.delivery.delivery_price || 0
+        });
     }
 
     render() {
@@ -153,6 +169,7 @@ class Order extends Component {
                     phone={this.state.phone}
                     handleChange={this.handleChange}
                     handleChangeWithValidation={this.handleChangeWithValidation}
+                    handleChangeWithoutValidation={this.handleChangeWithoutValidation}
                 />
                 <div className="order-products">
                     <h2>Ваш заказ</h2>

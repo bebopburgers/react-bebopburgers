@@ -124,6 +124,7 @@ class Address extends Component {
     }
 
     calculateDeliveryPrice = (dadata) => {
+
         const { cart } = this.props;
 
         let totalPrice = 0;
@@ -142,7 +143,8 @@ class Address extends Component {
         this.props.setDeliveryAddress({
             city: dadata.data.city,
             street: dadata.data.street,
-            home: dadata.data.house
+            home: dadata.data.house,
+            streetClassifierId: dadata.data.street_kladr_id
         });
     }
 

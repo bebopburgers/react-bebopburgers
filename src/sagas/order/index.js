@@ -51,6 +51,7 @@ export const workerOrderData = function* (action) {
                     city: action.payload.address.city,
                     street: action.payload.address.street,
                     home: action.payload.address.home,
+                    streetClassifierId: action.payload.address.streetClassifierId
                 },
                 date: new Date(),
                 personsCount: "1",

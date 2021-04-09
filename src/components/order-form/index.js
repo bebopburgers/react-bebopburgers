@@ -15,6 +15,7 @@ class OrderForm extends Component {
             name,
             phone,
             handleChangeWithValidation,
+            handleChangeWithoutValidation,
             handleChange,
         } = this.props;
 
@@ -38,6 +39,26 @@ class OrderForm extends Component {
                                 mask="+7 (999) 999-99-99"
                                 name="phone"
                                 onChange={(e) => handleChangeWithValidation(e)}
+                            />
+                        </label>
+                    </div>
+                    <div className="combiner">
+                        <label className="name">Подьезд
+                            <input
+                                className="form-field"
+                                placeholder="Подьезд"
+                                type="text"
+                                name="entrance"
+                                onChange={(e) => handleChangeWithoutValidation(e)}
+                            />
+                        </label>
+                        <label className="name">Квартира
+                            <input
+                                className="form-field"
+                                placeholder="Квартира"
+                                type="text"
+                                name="flat"
+                                onChange={(e) => handleChangeWithoutValidation(e)}
                             />
                         </label>
                     </div>
