@@ -14,7 +14,7 @@ import {
     getDeliveryPrice,
     resetDelivery,
     resetDeliveryForSnapshot,
-    setDeliveryAddress
+    setDeliveryAddress, setExtraFields
 } from "../../actions/address";
 import {DADATA_LOCATIONS} from "../../constants";
 
@@ -38,7 +38,9 @@ class Address extends Component {
         orderType: { key: 0, value: "Как можно быстрее" },
         time: undefined,
         isSelfService: true,
-        day: undefined
+        day: undefined,
+        entrance: "",
+        flat: "",
     };
 
     setValue = (value) => {
@@ -148,15 +150,21 @@ class Address extends Component {
         });
     }
 
+    saveExtraAddressFields = (e) => {
+        const { name, value } = e.target;
+
+        this.props.setExtraFields({ key: name, value: value })
+    }
+
     render() {
         const { logo, phone } = this.props.dashboard.organizations.length && this.props.dashboard.organizations[0];
-        const { dadata, orderMethod, day, time, orderType } = this.state;
-        const { delivery, cart } = this.props;
+        const { dadata, orderMethod } = this.state;
+        const { delivery } = this.props;
 
         return (
             <div className="address">
                 <Header logo={logo} tel={phone} cart={undefined}/>
-                <div className="container">
+                <div className="container custom-container">
                     <div className="wrapper-dadata">
                         <div className="address-container">
                             <div className="single">
@@ -187,6 +195,26 @@ class Address extends Component {
                                         }}
                                     />
                                 </label>
+                                <div className="combiner">
+                                    <label className="name">Подьезд
+                                        <input
+                                            className="form-field"
+                                            placeholder="Подьезд"
+                                            type="text"
+                                            name="entrance"
+                                            onChange={(e) => this.saveExtraAddressFields(e)}
+                                        />
+                                    </label>
+                                    <label className="name">Квартира
+                                        <input
+                                            className="form-field"
+                                            placeholder="Квартира"
+                                            type="text"
+                                            name="flat"
+                                            onChange={(e) => this.saveExtraAddressFields(e)}
+                                        />
+                                    </label>
+                                </div>
                                 <div className="single">
                                     <label className="delivery-time">Время доставки
                                         <input type="text" value="Сегодня, как можно быстрее"/>
@@ -281,6 +309,7 @@ const mapDispatchToProps = {
     getDeliveryPrice,
     addToDeliveryForSnapshot,
     resetDeliveryForSnapshot,
+    setExtraFields,
     resetDelivery,
 }
 

@@ -30,6 +30,12 @@
     position: relative;
 }
 
+@media screen and (max-width: 992px) {
+    .custom-container {
+        margin: 10px 30px;
+    }
+}
+
 .logo {
     width: 40px;
 }

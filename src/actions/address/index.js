@@ -6,11 +6,22 @@ export const GET_DELIVERY_PRICE_PENDING = 'GET_DELIVERY_PRICE_PENDING';
 export const GET_DELIVERY_PRICE_RESOLVE = 'GET_DELIVERY_PRICE_RESOLVE';
 export const GET_DELIVERY_PRICE_REJECT = 'GET_DELIVERY_PRICE_REJECT';
 export const SET_DELIVERY_ADDRESS = 'SET_DELIVERY_ADDRESS';
+export const SET_EXTRA_FIELDS = 'SET_EXTRA_FIELDS';
 
 export const getDeliveryPrice = (data, cartSum) => {
     return {
         type: GET_DELIVERY_PRICE_PENDING,
         payload: {...data, price: cartSum }
+    }
+}
+
+export const setExtraFields = (data) => {
+    return {
+        type: SET_EXTRA_FIELDS,
+        payload: {
+            key: data.key,
+            value: data.value
+        }
     }
 }
 

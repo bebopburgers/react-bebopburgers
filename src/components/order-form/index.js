@@ -42,26 +42,6 @@ class OrderForm extends Component {
                             />
                         </label>
                     </div>
-                    <div className="combiner">
-                        <label className="name">Подьезд
-                            <input
-                                className="form-field"
-                                placeholder="Подьезд"
-                                type="text"
-                                name="entrance"
-                                onChange={(e) => handleChangeWithoutValidation(e)}
-                            />
-                        </label>
-                        <label className="name">Квартира
-                            <input
-                                className="form-field"
-                                placeholder="Квартира"
-                                type="text"
-                                name="flat"
-                                onChange={(e) => handleChangeWithoutValidation(e)}
-                            />
-                        </label>
-                    </div>
                     <div className="notes">
                         <h2>Детали</h2>
                         <br/>

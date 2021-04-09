@@ -47,7 +47,7 @@ class Header extends Component {
 
         return (
             <div className="header">
-                <div className="container">
+                <div className="container custom-container">
                     <div className="logo">
                         <Link to="/dashboard">
                             <img src={logo} alt="logo"/>
