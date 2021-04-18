@@ -25,6 +25,8 @@ class Dashboard extends Component {
         currentProduct: undefined,
         currentProductModifiers: [],
         currentProductTotalPrice: 0,
+        currentProductCount: undefined,
+        currentProductHovered: undefined,
     }
 
     componentDidMount() {
@@ -138,7 +140,6 @@ class Dashboard extends Component {
 
     addToCartWithoutModal = (product) => {
         const { addToCart, cart, incrementProductCount } = this.props;
-        const { currentProductModifiers, currentProduct, currentProductTotalPrice } = this.state;
 
         const newItem = {
             price: product.price,
@@ -151,7 +152,7 @@ class Dashboard extends Component {
         let isExist = null;
 
         cart.map(i => {
-            if (JSON.stringify(i.products) == JSON.stringify(newItem.products) && JSON.stringify(i.modifiers) == JSON.stringify(newItem.modifiers)) {
+            if (JSON.stringify(i.products) === JSON.stringify(newItem.products) && JSON.stringify(i.modifiers) === JSON.stringify(newItem.modifiers)) {
                 isExist = i;
             }
         });
@@ -175,6 +176,28 @@ class Dashboard extends Component {
         const { removeFromCart } = this.props;
 
         removeFromCart(product);
+    }
+
+    hoverCartInfo = (item) => {
+        const { cart } = this.props;
+
+        cart.map(pr => {
+            if (pr.products.id === item.id) {
+                this.setState(state => ({
+                    ...state,
+                    currentProductCount: pr.count,
+                    currentProductHovered: pr.products.id
+                }))
+            }
+        });
+    }
+
+    leaveCartInfo = () => {
+        this.setState(state => ({
+            ...state,
+            currentProductCount: undefined,
+            currentProductHovered: undefined,
+        }))
     }
 
     render() {
@@ -209,8 +232,6 @@ class Dashboard extends Component {
                         onSetModifier={this.setModifier}
                         onSetToCart={this.addToCart}
                     />
-                    
-
                         <div className="tab-panels">
                             {groups.map((grp, idx) =>
                                 <TabPanel key={`${grp.id}${grp.name}`} value={tab} index={idx + 1}>
@@ -218,7 +239,12 @@ class Dashboard extends Component {
                                         title={grp.name}
                                         categories={grp.subgroups}
                                         onOpenModal={this.openModal}
-                                        onSelect={this.addToCartWithoutModal}/>
+                                        onSelect={this.addToCartWithoutModal}
+                                        onHover={this.hoverCartInfo}
+                                        onLeave={this.leaveCartInfo}
+                                        currentProductCount={this.state.currentProductCount}
+                                        currentProductHoveredId={this.state.currentProductHovered}
+                                    />
                                 </TabPanel>
                             )}
                         </div>
